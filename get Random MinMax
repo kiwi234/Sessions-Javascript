@@ -1,0 +1,76 @@
+<script>
+
+
+
+// PV veut dire Points de Vie
+var PV = 3000;
+var degats =30;
+var soins = 20;
+
+function attaque() {
+	if(PV >= degats) {
+		PV = PV-degats;
+	} else {	
+    	PV  = 0  
+    }
+    if(PV <= 0){
+        alert("Le monstre est mort ! :-)");
+    }
+    else {
+        alert("Le monstre a perdu "+degats+" PV. Il lui en reste "+PV);
+    }
+}   
+
+function soigne() {
+	if(PV + soins <= 3000) {
+    	PV = PV+soins;
+	} else {	
+    	PV  = 3000 
+    }
+    if(PV >= 3000){
+        alert("Le monstre a ses points de vie déjà au maximum.");
+    }
+    else {
+        alert("Le monstre a gagné "+soins+" PV. Il en a maintenant "+PV);
+    }
+}
+
+function getRandomMinMax (min,max)
+{
+	return Math.floor(Math.random() *(max-min) )+min;
+}
+//alert(getRandomMinMax(30,49));
+
+function canonlaser () 
+{
+	var degatscanonlaser=getRandomMinMax(100,300);
+        PV = PV- degatscanonlaser ;
+
+   if(PV <= 0){
+        alert("Le monstre est mort ! :-)");
+    }
+    else {
+        alert("Le monstre a perdu "+degatscanonlaser+" PV. Il lui en reste "+PV);
+    }
+
+
+
+}
+
+
+
+
+</script>
+<button onclick="canonlaser()">Canonlaser</button>
+<button onclick="attaque()">Attaque</button>
+<button onclick="soigne()">Soigne</button>
+
+
+
+
+ 
+
+
+
+
+
