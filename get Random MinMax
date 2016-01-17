@@ -1,7 +1,5 @@
 <script>
 
-
-
 // PV veut dire Points de Vie
 var PV = 3000;
 var degats =30;
@@ -64,13 +62,7 @@ function canonlaser ()
 <button onclick="canonlaser()">Canonlaser</button>
 <button onclick="attaque()">Attaque</button>
 <button onclick="soigne()">Soigne</button>
-
-
+<img src="http://vignette2.wikia.nocookie.net/starwars/images/2/21/Shock_troops_SWE.png" />
 
 
  
-
-
-
-
-
