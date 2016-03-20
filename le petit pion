@@ -1,0 +1,77 @@
+<style type="text/css">
+	body {background: #000;}
+	#conteneur {width: 400px;height: 300px;border: 1px solid #333;
+    			margin: 0 auto;background: #FFF;text-align: center;}
+	h1 {text-align: center;font-variant: small-caps;color: #FFF;}
+	p {text-align: center;font-variant: small-caps;color: #FFF;}
+</style>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript">
+	// Constantes du jeu
+
+	// Largeur du jeu
+	var ZONE_JEU_WIDTH = 400;
+	// Hauteur du jeu
+	var ZONE_JEU_HEIGHT = 300;
+    
+    var playerX = ZONE_JEU_WIDTH/2;
+    var playerY = ZONE_JEU_HEIGHT/2;
+    
+
+	// Variables
+	var context;
+	var boucleJeu;
+
+
+	window.addEventListener('load', function () {
+	    // On récupère l'objet canvas pour dessiner dedans
+	    context = document.getElementById('canvasElem').getContext('2d');
+
+	    // Boucle de rafraichissement du contexte 2D
+	    boucleJeu = setInterval(refreshGame, 10);
+	}, false);
+
+	    // Gestion des événements
+	    window.document.onkeydown = deplacement;
+
+	function refreshGame() {
+
+	    // On efface la zone
+	    context.clearRect(0, 0, ZONE_JEU_WIDTH, ZONE_JEU_HEIGHT);
+
+	    // Puis on réaffiche le nécessaire
+	    context.fillStyle = "#333333";
+	    context.fillRect(playerX,playerY,10,10);
+	}
+
+	function deplacement(e)
+    {
+	    //alert(e.keyCode);
+        
+        if(e.keyCode == 39)
+        {
+        	playerX = playerX + 5;
+        }
+        
+        if(e.keyCode == 40)
+        {
+        playerY = playerY + 5;
+        }
+        if(e.keyCode == 37)
+        {
+        playerX = playerX - 5;
+        }
+        if(e.keyCode == 38)
+        {
+        playerY = playerY - 5;
+        }
+        
+	}
+</script>
+
+<h1>petit pion</h1>
+<div id="conteneur">
+	<canvas id="canvasElem" width="400" height="300">
+		Votre navigateur ne supporte pas la fonctionnalité Canvas.
+	</canvas>
+</div>
