@@ -47,4 +47,30 @@ function checklimits(){
 
 
 }
+------------------------------------
+var upKey;
+var downKey;
+var leftKey;
+var rightKey;
 
+var sprite;
+var orb;
+function create() {
+
+    sprite = game.add.sprite(100, 100, 'phaser');
+    orb=game.add.sprite(0,0,'orb');
+    
+    upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
+    downKey = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
+    leftKey = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
+    rightKey = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
+}
+-------------------------------------------------------------------------
+function preload() {
+
+    game.load.baseURL = 'http://examples.phaser.io/assets/';
+    game.load.crossOrigin = 'anonymous';
+
+    game.load.image('phaser', 'sprites/phaser-dude.png');
+    game.load.image('orb', 'sprites/orb-blue.png');
+}
