@@ -1,0 +1,103 @@
+function preload() {
+    game.load.baseURL = 'http://examples.phaser.io/assets/';
+    game.load.crossOrigin = 'anonymous';
+   // game.load.image("metalslug","sprites/phaser-dude.png");
+        game.load.image('soldat',frame0);
+ game.load.image("turoule","sprites/orb-blue.png");
+
+
+
+}
+
+ var frame0 = [
+	'..0.........0...',
+	'..00A.A0A.A00...',
+	'...0A0A0A0A0....',
+	'....A00A00A.....',
+	'....003A300.....',
+	'....00A0A00.....',
+	'..0000A0A0000...',
+	'.0AAAA00000000..',
+	'.0AB0000000CC00.',
+	'..BB000000CCC00.',
+	'..BB000CCCCCC00.',
+	'..BBBBC0000000..',
+	'..BB00C000C000..',
+	'....000C0C00....',
+	'....00000000....',
+	'................'
+	];
+---------------------------------------------------------------------------------------------------------------------------------
+
+
+var sprite;
+var arrows;
+var bouboul;
+
+function create() {
+    sprite=game.add.sprite(200,200,'soldat');
+    arrows=game.input.keyboard.createCursorKeys();
+    bouboul=game.add.sprite(200,200,"turoule");
+game.physics.startSystem(Phaser.Physics.Arcade);
+game.physics.arcade.gravity.y=98;
+game.physics.arcade.enable(sprite);
+sprite.body.collideWorldBounds=true;
+
+}
+---------------------------------------------------------------------------------------------------------------------------------
+
+    
+
+function update() {
+    checkCursorKeys();
+   game.physics.arcade.overlap(sprite,bouboul, miam, null); 
+}
+function checkCursorKeys(){
+if(arrows.left.isDown){
+    sprite.body.velocity.x=-100;
+}
+if(arrows.right.isDown){
+    sprite.body.velocity.x=100;
+
+}
+if(arrows.up.isDown){
+    sprite.body.velocity.y=-100;
+}
+if(arrows.down.isDown){
+    sprite.body.velocity.y=100;
+}
+
+}
+
+function miam (spriteA,spriteB){
+var newx;
+var newy;
+spriteB.reset(newx,newy);
+
+}
+---------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
