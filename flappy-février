@@ -1,0 +1,117 @@
+function preload() {
+    
+    game.load.baseURL = 'http://examples.phaser.io/assets/';
+    game.load.crossOrigin = 'anonymous';
+   // game.load.image("metalslug","sprites/phaser-dude.png");
+        game.load.image("turoule","sprites/orb-blue.png");
+
+ var frame0 = [
+	'..0.........0...',
+	'..00A.A0A.A00...',
+	'...0A0A0A0A0....',
+	'....A00A00A.....',
+	'....003A300.....',
+	'....00A0A00.....',
+	'..0000A0A0000...',
+	'.0AAAA00000000..',
+	'.0AB0000000CC00.',
+	'..BB000000CCC00.',
+	'..BB000CCCCCC00.',
+	'..BBBBC0000000..',
+	'..BB00C000C000..',
+	'....000C0C00....',
+	'....00000000....',
+	'................'
+	];
+	
+    game.create.texture('soldat',frame0,4,4,0);
+    
+     var frame1 = [
+	'33',
+	'33'
+	];
+	
+    game.create.texture('mur',frame1,48,48,0);
+}
+
+---------------------------------------------------------
+
+var sprite;
+var arrows;
+var bouboul;
+var murs;
+var passages;
+var tailleMurs = 100;
+
+function create() {
+    game.physics.startSystem(Phaser.Physics.Arcade);
+    game.physics.arcade.gravity.y=98;
+    
+    sprite=game.add.sprite(200,200,'soldat');
+    game.physics.arcade.enable(sprite);
+    sprite.body.collideWorldBounds=true;
+    
+    murs = game.add.group();
+    murs.add(game.add.tileSprite(1050,0,tailleMurs,300, 'mur'));
+    murs.add(game.add.tileSprite(1050,500,tailleMurs,600,'mur'));
+    murs.add(game.add.tileSprite(1400,0,tailleMurs,100, 'mur'));
+    murs.add(game.add.tileSprite(1400,300,tailleMurs,600,'mur'));
+    murs.add(game.add.tileSprite(1750,0,tailleMurs,100,'mur'));
+    murs.add(game.add.tileSprite(1750,400,tailleMurs,600,'mur'));
+    
+    passage = game.add.group();
+    passage.add(game.add.sprite(1050,300,null));
+
+    game.physics.arcade.enable(murs);
+    murs.setAll('body.allowGravity', false);
+    murs.setAll('body.collideWorldBounds', false);
+    
+    bouboul=game.add.sprite(200,200,"turoule");
+    game.physics.arcade.enable(bouboul);
+    bouboul.body.allowGravity = false;
+    bouboul.body.collideWorldBounds=true;
+
+    arrows=game.input.keyboard.createCursorKeys();
+}
+
+-----------------------------------------------------------
+
+function update() {
+    checkCursorKeys();
+    game.physics.arcade.overlap(sprite,bouboul, miam);
+    
+    murs.forEach(move);
+}
+
+function checkCursorKeys(){
+    if(arrows.left.isDown){
+        sprite.body.velocity.x=-100;
+    }
+    if(arrows.right.isDown){
+        sprite.body.velocity.x=100;
+    
+    }
+    if(arrows.up.isDown){
+        sprite.body.velocity.y=-100;
+    }
+    if(arrows.down.isDown){
+        sprite.body.velocity.y=100;
+    }
+}
+
+function miam (spriteA,spriteB){
+    var newx= game.rnd.integerInRange(100, 400);
+    var newy=game.rnd.integerInRange(700,100 );
+    spriteB.reset(newx,newy);
+    
+    //mettre a jour le score
+}
+
+function move(item)
+{
+    item.body.velocity.x=-100;
+    
+    if(item.x < 100){
+        item.x = 1050;
+    }
+}
